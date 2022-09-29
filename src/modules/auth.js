@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { token } = require("morgan");
 
 const jwt_token = (user) => {
   const token = jwt.sign(
@@ -12,7 +11,8 @@ const jwt_token = (user) => {
 };
 
 const protect = (req, res, next) => {
-  const bearer = req.headers.authrization;
+  const bearer = req.headers.authorization;
+  const [, token] = bearer.split(" ");
   if (!bearer) {
     res.status(401);
     res.json({
@@ -25,9 +25,10 @@ const protect = (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
+    console.error("auth error");
     res.status(401);
     res.json({
-      message: "something was wrong",
+      message: "not a valid auth",
     });
     return;
   }

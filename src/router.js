@@ -2,7 +2,7 @@ const { Router } = require("express");
 
 const router = Router();
 /**
- * @Product
+ * Product 
  */
 router.get("/product", (req, res) => {
   res.json({ message: "this is message" });
@@ -17,7 +17,7 @@ router.put("/product/:id", (req, res) => {});
 router.delete("/product/:id", (req, res) => {});
 
 /**
- * @Update
+ * Update 
  */
 
 router.get("/update", (req, res) => {});
@@ -31,7 +31,7 @@ router.put("/update/:id", (req, res) => {});
 router.delete("/update/:id", (req, res) => {});
 
 /**
- * @UpdatePoint
+ * Update Point
  */
 
 router.get("/updatepoint", (req, res) => {});
