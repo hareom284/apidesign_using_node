@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
-const createJWT = (user) => {
-  const token = jwt.sign(
+export const createJWT = (user) => {
+  return jwt.sign(
     {
       id: user.id,
       username: user.username,
@@ -11,7 +11,7 @@ const createJWT = (user) => {
   );
 };
 //middleware for without login
-const protect = (req, res, next) => {
+export const protect = (req, res, next) => {
   const bearer = req.headers.authorization;
   console.log(bearer);
 
@@ -37,13 +37,11 @@ const protect = (req, res, next) => {
   }
 };
 //compare password
-const comparePasswords = (password, hash) => {
+export const comparePasswords = (password, hash) => {
   return bcrypt.compare(password, hash);
 };
 //hash password
-const hashPassword = (password) => {
+export const hashPassword = (password) => {
   console.log("THis is working");
   return bcrypt.hash(password, 5);
 };
-
-module.exports = { createJWT, protect, comparePasswords, hashPassword };

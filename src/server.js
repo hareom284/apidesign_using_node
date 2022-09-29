@@ -1,28 +1,24 @@
-const express = require("express");
-const { protect } = require("./modules/auth");
-const router = require("./router");
-require("dotenv").config();
-const morgan = require("morgan");
-
-// const cors = require("cors");
+import express from "express";
+import router from "./router.js";
+import morgan from "morgan";
+import { protect } from "./modules/auth.js";
+import { createNewUser, signin } from "./handlers/user.js";
 
 const app = express();
 
 app.use(morgan("dev"));
-// app.use(cors);
 app.use(express.json());
-// to allow query
 app.use(express.urlencoded({ extended: true }));
-// //middle ware
 
-// app.use((req, res, next) => {
-//   (req.secret = "this is srect"), next();
-// });
 app.get("/", (req, res) => {
-  res.json({
-    message: "This is testing",
-  });
+  console.log("hello from express");
+  res.status(200);
+  res.json({ message: "hello" });
 });
-app.use("/api", router);
 
-module.exports = app;
+app.use("/api", protect, router);
+
+app.post("/user", createNewUser);
+app.post("/signin", signin);
+
+export default app;

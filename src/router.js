@@ -1,18 +1,7 @@
-const { Router } = require("express");
-const { appendFile } = require("fs");
-
-const { createNewUser, signin } = require("./handlers/user");
+import { Router } from "express";
 
 const router = Router();
 
-/*****
- *
- * create account
- *
- ** */
-router.post("/user", createNewUser);
-
-router.post("/signin", signin);
 /**
  * Product
  */
@@ -56,4 +45,4 @@ router.put("/updatepoint/:id", (req, res) => {});
 
 router.delete("/updatepoint/:id", (req, res) => {});
 
-module.exports = router;
+export default router;
