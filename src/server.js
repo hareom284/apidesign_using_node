@@ -23,6 +23,6 @@ app.get("/", (req, res) => {
     message: "This is testing",
   });
 });
-app.use("/api", protect, router);
+app.use("/api", router);
 
 module.exports = app;
