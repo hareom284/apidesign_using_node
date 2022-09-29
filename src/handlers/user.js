@@ -1,6 +1,5 @@
 import prima from "../db.js";
 import { hashPassword, createJWT, comparePasswords } from "../modules/auth.js";
-
 //create account
 
 export const createNewUser = async (req, res) => {
@@ -14,7 +13,7 @@ export const createNewUser = async (req, res) => {
   });
 
   const token = createJWT(user);
-  console.log(token);
+  // console.log(token);
   res.json({ token });
 };
 

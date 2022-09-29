@@ -13,7 +13,7 @@ export const createJWT = (user) => {
 //middleware for without login
 export const protect = (req, res, next) => {
   const bearer = req.headers.authorization;
-  console.log(bearer);
+  // console.log(bearer);
 
   if (!bearer) {
     res.status(401);
@@ -42,6 +42,6 @@ export const comparePasswords = (password, hash) => {
 };
 //hash password
 export const hashPassword = (password) => {
-  console.log("THis is working");
+  // console.log("THis is working");
   return bcrypt.hash(password, 5);
 };
