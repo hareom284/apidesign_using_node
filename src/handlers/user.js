@@ -22,10 +22,10 @@ export const signin = async (req, res) => {
   const user = await prima.User.findUnique({
     where: { username: req.body.username },
   });
-
   const isValid = await comparePasswords(req.body.password, user.password);
   if (!isValid) {
     res.status(401);
+    console.log("working");
     res.send("Invalid username and password");
     return;
   }
